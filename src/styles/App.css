@@ -1,0 +1,12 @@
+.App {
+  text-align: center;
+}
+
+#code-sandbox{
+  width:  25px;
+  height: 25px;
+}
+
+a {
+  color: black;
+}
