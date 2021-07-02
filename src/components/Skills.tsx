@@ -1,38 +1,47 @@
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 
 const headers: { [name: string]: string[] } =
-    { 'a': ['1', '2', '3'], 'b': ['4', '5', '6'], 'c': ['7', '8', '9'] };
+    { 'FullStack Developer': ['1', '2', '3'], 'Front End Developer': ['4', '5', '6'], 'Mentor': ['7', '8', '9'] };
 
-const numHeaders = Object.keys(headers).length;
-const cellList: string[][] = [];
-for (let i = 0; i < numHeaders; i++) {
-    const subList: string[] = [];
-    Object.values(headers).map(valList => subList.push(valList[i]));
-    cellList.push(subList);
+export const organizeData = (data: { [name: string]: string[] }) => {
+    const numHeaders = Object.keys(data).length;
+    const cellList: string[][] = [];
+    for (let i = 0; i < numHeaders; i++) {
+        const subList: string[] = [];
+        Object.values(data).map(valList => subList.push(valList[i]));
+        cellList.push(subList);
+    }
+    return cellList;
+}
+
+
+const createTable = (titles: string[], cells: string[][]) => {
+    console.log(cells);
+    return (
+        <Table>
+            <TableBody>
+                <TableRow>
+                    {titles.map(title =>
+                        <TableCell key={title}>{title}</TableCell>)}
+                </TableRow>
+                {cells.map(row =>
+                    <TableRow key={row[0]}>
+                        {row.map(c => <TableCell key={c}>{c}</TableCell>)}
+                    </TableRow>)}
+            </TableBody>
+        </Table>
+    )
 }
 
 const Skills = () => {
+    const cellList = organizeData(headers);
     return (
         <div>
-            <Table>
-                <TableHead>
-                    Skills
-                </TableHead>
-                <TableBody>
-                    <TableRow>
-                        {Object.keys(headers).map(header => 
-                            <TableCell key={header}>{header}</TableCell>)}
-                    </TableRow>
-                    {cellList.map(row => 
-                        <TableRow key={row[0]}>
-                            {row.map(cell => <TableCell>{cell}</TableCell>)}
-                        </TableRow>)}
-                </TableBody>
-            </Table>
+            <h2>Skills</h2>
+            {createTable(Object.keys(headers), cellList)}
         </div>
     )
 }
