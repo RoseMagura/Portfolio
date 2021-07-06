@@ -4,29 +4,43 @@ import EmailIcon from '@material-ui/icons/Email';
 import DescriptionIcon from '@material-ui/icons/Description';
 import CodeSandBoxLogo from '../assets/code-sandbox.svg';
 
+interface Contact {
+    link: string;
+    icon: Element | JSX.Element;
+}
+
 const ContactList = () => {
+    const contacts: Contact[] = [
+        {
+            link: 'https://github.com/RoseMagura',
+            icon: <GitHubIcon />
+        },
+        {
+            link: 'https://www.linkedin.com/in/rose-magura-14746b164/',
+            icon: <LinkedInIcon />
+        },
+        {
+            link: 'mailto:rosemmagura@gmail.com',
+            icon: <EmailIcon />
+        },
+        {
+            link: `${process.env.PUBLIC_URL}/Resume.pdf`,
+            icon: <DescriptionIcon />
+        },
+        {
+            link: 'https://codesandbox.io/u/RoseMagura',
+            icon: <img id='code-sandbox' src={CodeSandBoxLogo} alt='Code Sandbox Logo' />
+        },
+    ];
     return (
         <div>
-            <a href='https://github.com/RoseMagura' target='_blank' 
-                className='logo'>
-                <GitHubIcon />
-            </a>
-            <a href='https://www.linkedin.com/in/rose-magura-14746b164/' 
-                target='_blank' className='logo'>
-                <LinkedInIcon />
-            </a>
-            <a href='mailto:rosemmagura@gmail.com' target='_blank' 
-                className='logo'>
-                <EmailIcon />
-            </a>
-            <a href={process.env.PUBLIC_URL + '/Resume.pdf'} download 
-                className='logo'>
-                <DescriptionIcon />
-            </a>
-            <a href='https://codesandbox.io/u/RoseMagura' target='_blank'
-                className='logo'>
-                <img id='code-sandbox' src={CodeSandBoxLogo} alt='Code Sandbox Logo'></img>
-            </a>
+            {contacts.map(contact => {
+                return (
+                    <a href={contact.link} target='_blank' className='logo'>
+                        {contact.icon}
+                    </a>
+                )
+            })}
         </div>
     )
 }
