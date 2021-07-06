@@ -4,7 +4,14 @@ import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 
 const headers: { [name: string]: string[] } =
-    { 'FullStack Developer': ['1', '2', '3'], 'Front End Developer': ['4', '5', '6'], 'Mentor': ['7', '8', '9'] };
+{
+    'FullStack Developer':
+        ['Node.js API development', 'SQL and ORM', 'Hosting (AWS and Heroku)'],
+    'Front End Developer':
+        ['React', 'Angular', 'Sass and CSS'],
+    'Mentor':
+        ['Communication skills', 'Leadership', 'Attention to detail']
+};
 
 export const organizeData = (data: { [name: string]: string[] }) => {
     const numHeaders = Object.keys(data).length;
@@ -19,13 +26,14 @@ export const organizeData = (data: { [name: string]: string[] }) => {
 
 
 const createTable = (titles: string[], cells: string[][]) => {
-    console.log(cells);
     return (
         <Table>
             <TableBody>
                 <TableRow>
                     {titles.map(title =>
-                        <TableCell key={title}>{title}</TableCell>)}
+                        <TableCell key={title} style={{ fontWeight: 'bold' }}>
+                            {title}
+                        </TableCell>)}
                 </TableRow>
                 {cells.map(row =>
                     <TableRow key={row[0]}>

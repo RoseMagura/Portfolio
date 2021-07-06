@@ -1,5 +1,4 @@
 import '../styles/App.css';
-import ContactButton from './ContactButton';
 import Title from './Title';
 import Biography from './Biography';
 import Skills from './Skills';
@@ -10,7 +9,6 @@ const App = () => {
   return (
     <div className="App">
       <h1>My Portfolio</h1>
-      {/* <ContactButton /> */}
       <Title />
       <Biography />
       <Skills />
